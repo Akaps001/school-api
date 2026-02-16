@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 module.exports = ({ uri }) => {
-  //database connection
-  mongoose.connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+  // Database connection
+  // In Mongoose 7+,NewUrlParser and useUnifiedTopology are enabled by default
+  mongoose.connect(uri)
+    .catch(err => {
+      console.log('Mongoose initial connection error: ' + err);
+    });
 
 
   // When successfully connected
