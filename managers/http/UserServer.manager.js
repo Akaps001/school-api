@@ -34,6 +34,11 @@ module.exports = class UserServer {
         // General API rate limiting
         app.use('/api/', apiLimiter);
 
+        // Health check
+        app.get('/health', (req, res) => {
+            res.json({ ok: true, message: 'Server is healthy', timestamp: new Date() });
+        });
+
         /** an error handler */
         app.use((err, req, res, next) => {
             console.error(err.stack)
