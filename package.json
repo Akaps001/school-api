@@ -1,0 +1,47 @@
+{
+  "name": "axion",
+  "version": "0.1.0",
+  "description": "Boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "dev:mem": "node scripts/dev-mem.js",
+    "test": "jest --coverage --runInBand",
+    "test:unit": "jest tests/unit --coverage",
+    "test:integration": "jest tests/integration",
+    "test:security": "jest tests/security"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aeon-machine": "^0.0.9",
+    "axios": "^1.13.5",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-rate-limit": "^6.7.0",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
+    "ion-cortex": "^1.3.6",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "mongoose": "^7.0.0",
+    "nanoid": "^3.3.2",
+    "oyster-db": "*",
+    "qantra-pineapple": "^1.0.7",
+    "request-ip": "^2.1.3",
+    "swagger-ui-express": "^5.0.1",
+    "useragent": "^2.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "mongodb-memory-server": "^8.12.2",
+    "nodemon": "^2.0.22",
+    "supertest": "^6.3.3"
+  }
+}
