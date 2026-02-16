@@ -42,7 +42,6 @@ config.dotEnv = {
     CACHE_REDIS,
     CACHE_PREFIX,
     MONGO_URI,
-    MONGO_OPTIONS,
     USER_PORT,
     ADMIN_PORT,
     ADMIN_URL,
