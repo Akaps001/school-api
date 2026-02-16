@@ -3,23 +3,27 @@ mongoose.Promise = global.Promise;
 
 module.exports = ({ uri }) => {
   // Database connection
-  // In Mongoose 7+,NewUrlParser and useUnifiedTopology are enabled by default
+  // Masking URI for safer logging
+  const maskedUri = uri ? uri.replace(/:([^@]+)@/, ':****@') : 'undefined';
+  console.log('Connecting to MongoDB: ' + maskedUri);
+
   mongoose.connect(uri)
     .catch(err => {
-      console.log('Mongoose initial connection error: ' + err);
+      console.error('Mongoose initial connection error: ' + err);
     });
-
 
   // When successfully connected
   mongoose.connection.on('connected', function () {
-    console.log('Mongoose default connection open to ' + uri);
+    console.log('Mongoose default connection successful');
   });
 
   // If the connection throws an error
   mongoose.connection.on('error', function (err) {
-    console.log('Mongoose default connection error: ' + err);
-    console.log('=> if using local mongodb: make sure that mongo server is running \n' +
-      '=> if using online mongodb: check your internet connection \n');
+    console.error('Mongoose default connection error: ' + err);
+    if (err.message && err.message.includes('alert number 80')) {
+      console.log('💡 TIP: SSL alert 80 often means MongoDB Atlas is blocking the connection.');
+      console.log('   Please ensure 0.0.0.0/0 is ACTIVE in Atlas Network Access and your password is correct.');
+    }
   });
 
   // When the connection is disconnected
